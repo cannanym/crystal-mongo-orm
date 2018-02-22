@@ -169,7 +169,7 @@ module Mongo::ORM::Fields
                @{{_name.id}} = Time.parse(value.to_s, "%F %X").to_utc
              end
           {% elsif type.id == Mongo::ORM::EmbeddedDocument.id %}
-            @{{_name.id}} = value.as(Mongo::ORM::EmbeddedDocument)
+            @{{_name.id}} = value
           {% else %}
             @{{_name.id}} = value.to_s
           {% end %}

@@ -14,6 +14,7 @@ class TestBlog < Mongo::ORM::EmbeddedDocument
   field name : String
   field description : String
   embeds thing : TestInnerThing
+  embeds settings : BlogSetting
 end
 
 class TestPost < Mongo::ORM::Document
@@ -34,6 +35,10 @@ class TestAdmin < Mongo::ORM::Document
   embeds_many :test_inner_things
 
   timestamps
+end
+
+class BlogSetting < Mongo::ORM::EmbeddedDocument
+  field version : Int32
 end
 
 Spec.before_each do

@@ -46,10 +46,13 @@ describe Mongo::ORM::Document do
       a.first_name = "Sam"
       a.blog = TestBlog.new
       a.blog.not_nil!.name = "test blog"
+      a.blog.not_nil!.settings = BlogSetting.new
+      a.blog.not_nil!.settings.not_nil!.version = 1
       a.save!
       a = TestAdmin.first.not_nil!
       a.first_name.should eq "Sam"
       a.blog.not_nil!.name.should eq "test blog"
+      a.blog.not_nil!.settings.not_nil!.version.should eq 1
     end
   end
 end
