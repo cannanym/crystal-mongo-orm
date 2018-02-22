@@ -168,6 +168,8 @@ module Mongo::ORM::Fields
              elsif value.to_s =~ TIME_FORMAT_REGEX
                @{{_name.id}} = Time.parse(value.to_s, "%F %X").to_utc
              end
+          {% elsif type.id == Mongo::ORM::EmbeddedDocument.id %}
+            @{{_name.id}} = value.as(Mongo::ORM::EmbeddedDocument)
           {% else %}
             @{{_name.id}} = value.to_s
           {% end %}
